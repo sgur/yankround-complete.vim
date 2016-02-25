@@ -1,0 +1,37 @@
+= yankround-complete.vim
+
+Vim plugin to provide Insert mode completion for https://github.com/LeafCage/yankround.vim[Yankround.vim]
+
+== Usage
+
+=== Generic insert mode completion
+
+Map `<Plug>(yankround-complete)` to a key sequence.
+
+[source, vim]
+----
+imap <C-x><C-x> <Plug>(yankround-complete)
+----
+
+=== Using via `completefunc`
+
+[source, vim]
+----
+set completefunc=yankround_complete#complete
+----
+
+== Requirements
+
+https://github.com/LeafCage/yankround.vim[Yankround.vim]
+
+== Installation
+
+Use your favorite plugin manager.
+
+== License
+
+MIT License
+
+== Author
+
+sgur
