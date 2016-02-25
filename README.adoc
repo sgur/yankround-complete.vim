@@ -2,6 +2,8 @@
 
 Vim plugin to provide Insert mode completion for https://github.com/LeafCage/yankround.vim[Yankround.vim]
 
+image::https://dl.dropboxusercontent.com/u/175488/Screenshots/github.com/yankround-complete.vim/yankround-complete-screenshot.png
+
 == Usage
 
 === Generic insert mode completion
