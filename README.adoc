@@ -19,7 +19,7 @@ imap <C-x><C-x> <Plug>(yankround-complete)
 
 [source, vim]
 ----
-set completefunc=yankround_complete#complete
+set completefunc=yankround#complete#completefunc
 ----
 
 == Requirements

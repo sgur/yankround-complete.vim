@@ -3,18 +3,17 @@ scriptencoding utf-8
 
 " Internal {{{1
 
-function! s:yankround_complete() abort "{{{
-  let col = match(getline('.')[: -1], '\S\+$') + 1
-  call complete(col > 0 ? col : col('$'), s:get_candidates())
-  call s:enable_completedone_handler()
-  return ""
+function! s:find_start() abort "{{{
+  let col = match(getline('.')[: -1], '\k\+$') + 1
+  return (col > 0 ? col : col('$'))
 endfunction "}}}
 
-function! s:yankround_inscomplete(findstart, base) abort "{{{
-  if a:findstart
-    let col = match(getline('.')[: -1], '\k\+$') + 1
-    return (col > 0 ? col : col('$'))-1
-  endif
+function! s:complete() abort "{{{
+  call complete(s:find_start(), s:get_candidates())
+  call s:enable_completedone_handler()
+endfunction "}}}
+
+function! s:inscomplete(base) abort "{{{
   call s:enable_completedone_handler()
   return filter(s:get_candidates(), 'v:val.word =~? a:base')
 endfunction "}}}
@@ -55,11 +54,19 @@ endfunction "}}}
 
 " Interface {{{1
 
-function! yankround_complete#complete(...) abort
+function! yankround#complete#complete() abort
   call s:disable_completedone_handler()
-  return !a:0
-        \ ? s:yankround_complete()
-        \ : s:yankround_inscomplete(a:1, a:2)
+  call s:complete()
+  return ''
+endfunction
+
+function! yankround#complete#completefunc(findstart, base) abort
+  if a:findstart
+    return s:find_start() - 1
+  else
+    call s:disable_completedone_handler()
+    return s:inscomplete(a:base)
+  endif
 endfunction
 
 

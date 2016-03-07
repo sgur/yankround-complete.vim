@@ -12,7 +12,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-inoremap <Plug>(yankround-complete) <C-r>=yankround_complete#complete()<CR>
+inoremap <Plug>(yankround-complete) <C-r>=yankround#complete#complete()<CR>
 
 
 let &cpo = s:save_cpo
